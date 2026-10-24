@@ -7,6 +7,7 @@ function calculateSum(arr) {
 }
 
 function findMax(arr) {
+  if (arr.length === 0) return 0;
   let max = arr[0];
   for (let i = 1; i < arr.length; i++) {
     if (arr[i] > max) {
@@ -28,11 +29,8 @@ function filterLoudTracks(arr, threshold) {
 
 function runVolumeAnalysis() {
   const rawName = prompt("Введите ваше имя:");
-  if (rawName === null) {
-    return;
-  }
-
-  const userName = rawName.trim() !== "" ? rawName.trim() : "Гость";
+  const userName = rawName && rawName.trim() !== "" ? rawName.trim() : "Гость";
+  
   alert(`Привет, ${userName}! Запускаем анализ громкости треков.`);
 
   const trackVolumes = [70, 74, 86, 88, 96, 108];
@@ -60,7 +58,7 @@ function runVolumeAnalysis() {
 
   alert(`Средняя громкость – ${averageVolume} дБ, ${loudTracks.length} треков – громкие`);
 
-  console.log(`Тихие треки (≤ 75 дБ): найдено ${quietCount} шт. (${quietTracks.join(", ")} дБ)`);
+  console.log(`Количество тихих треков (≤ 75 дБ): ${quietCount}`);
   console.log(`Средняя громкость тихих треков: ${quietAverage} дБ`);
 
   const maxVolume = findMax(trackVolumes);
